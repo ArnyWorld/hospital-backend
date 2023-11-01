@@ -12,7 +12,11 @@ dbConnection();
 console.log(process.env.PORT)
 
 app.use('/api/users', require('./routes/users.js'))
+app.use('/api/hospitals', require('./routes/hospital.js'))
+app.use('/api/search', require('./routes/search.js'))
+app.use('/api/doctors', require('./routes/doctor.js'))
 app.use('/api/login', require('./routes/auth.js'))
+app.use('/api/upload', require('./routes/upload.js'))
 
 //Routes
 // app.get("/",(req,res)=>{
