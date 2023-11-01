@@ -60,7 +60,6 @@ const fileUpload = (req, res=response)=>{
             fileName
         })
     });
-   
 }
 
 const getImage = (req, res)=>{
