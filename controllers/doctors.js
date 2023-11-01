@@ -38,18 +38,63 @@ const postDoctor = async (req, res=response)=>{
     }
 }
 
-const putDoctor = (req, res=response)=>{
-    res.json({
-        ok:true,
-        msg:'putHospitals'
-    })
+const putDoctor = async(req, res=response)=>{
+    const id = req.params.id;
+    const uid = req.uid;
+    try {
+        const doctor = await Doctor.findById(id);
+        if(!doctor){
+            return res.json({
+                ok:true,
+                msg:'Doctor Id not found'
+            }) 
+        }
+        const changeDoctor = {
+            ...req.body,
+            user: uid,
+        }
+        doctorUpdate = await Doctor.findByIdAndUpdate(id, changeDoctor, {new:true})
+        res.json({
+            ok:true,
+            id,
+            doctorUpdate
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            ok:false,
+            msg: 'Error, Talk to the administrator'
+        })
+    }
+
 }
 
-const deleteDoctor = (req, res=response)=>{
-    res.json({
-        ok:true,
-        msg:'deleteHospitals'
-    })
+const deleteDoctor = async (req, res=response)=>{
+   
+    const id = req.params.id;
+    try {
+        const doctor = await Doctor.findById(id);
+        if(!doctor){
+            return res.json({
+                ok:true,
+                msg:'Doctor Id not found'
+            }) 
+        }
+      await Doctor.findByIdAndDelete(id);
+        res.json({
+            ok:true,
+            id,
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            ok:false,
+            msg: 'Error, Talk to the administrator'
+        })
+    }
+
 }
 
 module.exports = {
