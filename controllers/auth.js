@@ -32,8 +32,7 @@ const login = async (req,res)=>{
 
         res.json({
             ok:true,
-            msg:'Hello from Auth',
-            res: token
+            token
         })
         
     } catch (error) {
@@ -90,9 +89,11 @@ const renewToken = async (req, res=response)=> {
     const uid = req.uid;
     //Generate TOKEN - JWT
     const token = await generateJWT(uid);
+    const user = await User.findById(uid);
     res.json({
         ok:true,
-        token
+        token,
+        user
     })
 }
 

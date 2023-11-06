@@ -18,7 +18,7 @@ const updateImage = async(type, id, fileName)=>{
             if(!doctor){
                 return false;
             }
-            oldPath = `./uploads/doctors/${doctor.img}`;
+            oldPath = `./upload/doctors/${doctor.img}`;
             deleteImage(oldPath);
             doctor.img = fileName;
             await doctor.save();
@@ -28,7 +28,7 @@ const updateImage = async(type, id, fileName)=>{
             if(!hospital){
                 return false;
             }
-            oldPath = `./uploads/hospitals/${hospital.img}`;
+            oldPath = `./upload/hospitals/${hospital.img}`;
             deleteImage(oldPath);
             hospital.img = fileName;
             await hospital.save();
@@ -39,7 +39,7 @@ const updateImage = async(type, id, fileName)=>{
             if(!user){
                 return false;
             }
-            oldPath = `./uploads/users/${user.img}`;
+            oldPath = `./upload/users/${user.img}`;
             deleteImage(oldPath);
             user.img = fileName;
             await user.save();
