@@ -40,7 +40,7 @@ const getDocumentsCollection = async (req,res=response)=>{
                 data = await Hospital.find({name:regex}).populate('user','name img') ;
                 break;
             case 'users':
-                data = await User.find({name:regex}).populate('user','name img');
+                data = await User.find({name:regex});
             break;
     
         default:
